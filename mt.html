@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div class = "controls">
+        <div class = "mycheckox">
+            <ul class="checkbox-grid">
+                <li><input type="checkbox" value= 60 name="checkbox15" id = "checkbox1"><label for="checkbox1">Udemy Data viz course</label></li>
+                <li><input type="checkbox" value= 20 name="checkbox15" id = "checkbox2"><label for="checkbox2">Write Email</label></li>
+                <li><input type="checkbox" value= 45 name="checkbox15" id = "checkbox3"><label for="checkbox3">Create shopping list</label></li>
+                <li><input type="checkbox" value= 90 name="checkbox15" id = "checkbox4"><label for="checkbox4">Finish expense report</label></li>
+                <li><input type="checkbox" value= 45 name="checkbox15" id = "checkbox5"><label for="checkbox5">Plan road trip</label></li>
+                <li><input type="checkbox" value= 20 name="checkbox15" id = "checkbox6"><label for="checkbox6">Write thank you note</label></li>
+                <li><input type="checkbox" value= 60 name="checkbox15" id = "checkbox7"><label for="checkbox7">Update LinkedIn profile</label></li>
+                <li><input type="checkbox" value= 20 name="checkbox15" id = "checkbox8"><label for="checkbox8">Write cover letter</label></li>
+                <li><input type="checkbox" value= 60 name="checkbox15" id = "checkbox9"><label for="checkbox9">Plan friend's birthday</label></li>
+                <li><input type="checkbox" value= 60 name="checkbox15" id = "checkbox10"><label for="checkbox10">Get unread emails to zero</label></li>
+            </ul>
+        </div>
+        <hr width="95%">
+        <div class = "myslider">
+            <input type="range" id="MTlevelSlider" class="vHorizon" min="0.01" max="98" step="0.01"
+                   style="background-color: #00aec8;">
+        </div>
+    </div>
+    <script src="00_js_libs/d3.v3.js"></script>
+    <script src="00_js_libs/d3-timer.v0.3.min.js"></script>
+    <script type="text/javascript" src="00_js_libs/jquery-1.10.2.js"></script>
+	<script type="text/javascript">
+	</script>
+	<script>
+
+        // original dataset that we will use as baseline
+        var full_tasks_array = [{task: "Udemy Data viz course", ramp_up_time: 6},
+            {task: "Write Email", ramp_up_time: 2},
+            {task:"Create shopping list", ramp_up_time: 4.5},
+            {task: "Finish expense report", ramp_up_time: 9},
+            {task: "Plan road trip", ramp_up_time: 4.5},
+            {task: "Write thank you note", ramp_up_time: 2},
+            {task: "Update LinkedIn profile", ramp_up_time: 6},
+            {task: "Write cover letter", ramp_up_time: 2},
+            {task: "Plan friend's birthday", ramp_up_time: 6},
+            {task: "Get unread emails to zero", ramp_up_time: 6}];
+
+        // creating functions to use
+        function lookup_obj(obj, val){
+            for(i=0; i < obj.length; i++){
+                if(obj[i].task === val){
+                    return obj[i].ramp_up_time;
+                }
+            }
+        }
+
+        function getLabel(id){
+            return $("#"+id).next("label").html();
+        }
+
+        function append_ramp_up(orig_array){
+            var new_result = [];
+            var val;
+            for (var i = 0; i < orig_array.length; i++) {
+                val = orig_array[i].task;
+                new_result.push({task: "Ramp up", time: lookup_obj(full_tasks_array, val)});
+                new_result.push(orig_array[i]);
+                // object here with time.
+            }
+            return new_result;
+        }
+
+        $(".checkbox-grid li").change(function(event){
+            dataset = $("input:checkbox:checked").map(function(){
+                return {task: getLabel(this.id), time: +this.value};
+            }).get();
+            render(dataset);
+        });
+
+        // now comes the d3 part
+        var margin = {top: 50, right: 20, bottom: 50, left: 70};
+        var width = 800 - margin.left - margin.right;
+        var height = 20 - margin.top - margin.bottom;
+
+        var svg = d3.select("body").append("svg")
+                .classed("svg-area", true)
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom);
+
+        var g = svg.append("g")
+              .classed("plot", true)
+              .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        var xAxisG = g.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")"); // fix this, is not showing
+
+        var xScale = d3.scale.linear()
+                    .range([0, width]);
+
+        var yScale = d3.scale.ordinal()
+                    .rangeBands([0, height]);
+
+        var color = d3.scale.ordinal()
+                .range(["#000000", "#1f77b4","#ff7f0e","#2ca02c", "#d62728", "#9467bd",
+                    "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"]);
+
+        var xAxis = d3.svg
+                    .axis()
+                        .scale(xScale)
+                        .orient("bottom");
+
+        function render(data){
+
+            data = append_ramp_up(data);
+
+            var stack = d3.layout.stack()
+            .y(function (d){
+                return d.time;
+            })
+            .values(function(d){
+                return [d];
+            });
+
+            var stacked = stack(data); // gives us a stacked object with y0 and y...
+            // But we don't really want a vertical barchart we want it to be horizontal so, lets rename it
+
+            var i;
+            for(i = 0; i < stacked.length; i++){ // renaming y0 to x0 and x to y for the stacked array.
+                stacked[i].x0 = stacked[i]['y0'];
+                stacked[i].x = stacked[i]['y'];
+                delete stacked[i].y0;
+                delete stacked[i].y;
+            }
+
+            xAxisG.call(xAxis);
+
+            xScale.domain([0, 528]); // here you need to fix the scale, upper limit so it's easier to compare.
+
+            yScale.domain(stacked.map(function(d){
+                return d.task;
+            }));
+
+
+            color.domain(["Ramp up", "Udemy Data viz course",  "Write Email", "Create shopping list",
+                "Finish expense report", "Plan road trip",  "Write thank you note", "Update LinkedIn profile",
+                "Write cover letter", "Plan friend's birthday","Get unread emails to zero"]); // include black as
+                // ramp_up time
+
+            // join
+            var rects = g.selectAll("rect")
+                  .data(stacked);
+
+            //enter phase
+            rects.enter().append("rect");
+
+            //update phase
+            rects.attr("x", function(d){return xScale(d.x0)})
+                    .style("fill", function(d){return color(d.task)})
+                    .attr("y", height)
+                    .attr("width", function(d) { return xScale(d.x); })
+                    .attr("height", -height);// fix this. it's not elegant and it doesn't allow you to show the axis.
+
+            //exit phase
+            rects.exit().remove();
+
+            console.log(data.map(function(d){
+                return d.task;
+            }));
+        }
+
+
+
+
+	</script>
+</body>
+<style>
+    .svg-area{
+        float:left;
+        display: inline-block;
+    }
+    .controls {
+        width: 230px;
+        display: inline-block;
+        border-style: solid;
+    }
+    .checkbox-grid{
+        margin: 5px;
+        padding: 5px;
+    }
+    .checkbox-grid li {
+        list-style-type: none;
+    }
+    #MTlevelSlider{
+        width:200px;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+</style>
+</html>
