@@ -5,6 +5,7 @@
     <title></title>
 </head>
 <body>
+    <div id="Chart"></div>
     <div class = "controls">
         <div class = "mycheckox">
             <ul class="checkbox-grid">
@@ -22,8 +23,11 @@
         </div>
         <hr width="95%">
         <div class = "myslider">
-            <input type="range" id="MTlevelSlider" class="vHorizon" min="0.01" max="98" step="0.01"
+            <input type="range" id="MTlevelSlider" name = "myslider" class="vHorizon" min="1" max="98" step="1" value="0"
                    style="background-color: #00aec8;">
+            <label for="textInput">Number of Switches:</label>
+            <input type="text" id="textInput" value="0" readonly style="border:0; color:#f6931f;
+            font-weight:bold;">
         </div>
     </div>
     <script src="00_js_libs/d3.v3.js"></script>
@@ -32,6 +36,10 @@
 	<script type="text/javascript">
 	</script>
 	<script>
+
+        var allcheckboxes = document.getElementsByName("checkbox15");
+
+        console.log(allcheckboxes);
 
         // original dataset that we will use as baseline
         var full_tasks_array = [{task: "Udemy Data viz course", ramp_up_time: 6},
@@ -58,17 +66,42 @@
             return $("#"+id).next("label").html();
         }
 
-        function append_ramp_up(orig_array){
+        function append_ramp_up(orig_array, n_switches, penalty_val){  /// *** need to fix here the bordeline condition with only one
+            // task... there should be no rampup time.
+            // also add penalizer for ramp_up time.
             var new_result = [];
             var val;
-            for (var i = 0; i < orig_array.length; i++) {
-                val = orig_array[i].task;
-                new_result.push({task: "Ramp up", time: lookup_obj(full_tasks_array, val)});
-                new_result.push(orig_array[i]);
-                // object here with time.
-            }
+            for (var i = 0; i<=n_switches;i++){
+                for (var j = 0; j < orig_array.length; j++) {
+                    val = orig_array[j].task;
+                    if(j != 0) {
+                        new_result.push({
+                            task: "Ramp up",
+                            time: (lookup_obj(full_tasks_array, val)) / ((n_switches / penalty_val) + 1)
+                        });
+                        new_result.push({task: orig_array[j].task, time: (orig_array[j].time) / (n_switches + 1)});
+                    }// object here with time.
+                    else{
+                        new_result.push({
+                            task: "Ramp up",
+                            time: 0});
+                        new_result.push({task: orig_array[j].task, time: (orig_array[j].time) / (n_switches + 1)});
+                    }
+                    }
+                }
             return new_result;
         }
+
+        function rename_y(stacked_obj){ // simple function to rename y objects to x.
+            for(i = 0; i < stacked_obj.length; i++){
+                stacked_obj[i].x0 = stacked_obj[i]['y0'];
+                stacked_obj[i].x = stacked_obj[i]['y'];
+                delete stacked_obj[i].y0;
+                delete stacked_obj[i].y;
+            }
+            return stacked_obj;
+        }
+        var dataset;
 
         $(".checkbox-grid li").change(function(event){
             dataset = $("input:checkbox:checked").map(function(){
@@ -77,44 +110,78 @@
             render(dataset);
         });
 
-        // now comes the d3 part
-        var margin = {top: 50, right: 20, bottom: 50, left: 70};
-        var width = 800 - margin.left - margin.right;
-        var height = 20 - margin.top - margin.bottom;
+        var slider_val = $('input[name="myslider"]').val();
 
-        var svg = d3.select("body").append("svg")
+        $('input[name="myslider"]').change(function(){
+            slider_val = $('input[name="myslider"]').val();
+            document.getElementById('textInput').value = slider_val;
+            render(dataset); // I get an error here. because dataset doesn
+        });
+
+
+
+        // now comes the d3 part
+        var margin = {top: 10, right: 70, bottom: 10, left: 50};
+        var width = 800;
+        var height = 110;
+        var bar_spacing = 20;
+        var sim_y_position = margin.top + (height+bar_spacing)/2;
+        var bar_height = (height-bar_spacing)/2;
+
+        var svg = d3.select("#Chart").append("svg")
                 .classed("svg-area", true)
                 .attr("width", width + margin.left + margin.right)
                 .attr("height", height + margin.top + margin.bottom);
 
-        var g = svg.append("g")
+        var g_base = svg.append("g")
               .classed("plot", true)
               .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-        var xAxisG = g.append("g")
-            .attr("class", "x axis")
-            .attr("transform", "translate(0," + height + ")"); // fix this, is not showing
+        var g_sim = svg.append("g")
+                .classed("plot", true)
+                .attr("transform", "translate(" + margin.left + "," + sim_y_position + ")");
 
-        var xScale = d3.scale.linear()
-                    .range([0, width]);
+        var xAxisG = d3.select(".plot").append("g")
+            .attr("class", "x-axis")
+            .attr("transform", "translate(0," + margin.top + ")"); // fix this, is not showing
+
+        var timeTotal = 0;  // Variable to hold your total
+
+        for(var i = 0, len = allcheckboxes.length; i < len; i++) {
+            timeTotal += +allcheckboxes[i].value;  // Iterate over your first array and then grab the second element add the values up
+        }
+
+        var xScale = d3.scale
+                .linear()
+                .domain([0, timeTotal*1.5])
+                .range([0, width]);
 
         var yScale = d3.scale.ordinal()
                     .rangeBands([0, height]);
 
         var color = d3.scale.ordinal()
                 .range(["#000000", "#1f77b4","#ff7f0e","#2ca02c", "#d62728", "#9467bd",
-                    "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"]);
+                    "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"]) // custom scale to include black for rampup
+                .domain(["Ramp up", "Udemy Data viz course",  "Write Email", "Create shopping list",
+            "Finish expense report", "Plan road trip",  "Write thank you note", "Update LinkedIn profile",
+            "Write cover letter", "Plan friend's birthday","Get unread emails to zero"]);
 
         var xAxis = d3.svg
                     .axis()
                         .scale(xScale)
-                        .orient("bottom");
+                        .orient("top");
 
+        var tooltip = d3.select("body")
+                .append("div")
+                .classed("tooltip", true)
+                .style("position", "absolute")
+                .style("z-index", "10")
+                .style("visibility", "hidden");
         function render(data){
 
-            data = append_ramp_up(data);
+            xAxisG.call(xAxis);
 
-            var stack = d3.layout.stack()
+            var stack = d3.layout.stack()// this is just a function so we can reuse it for the simulation plot.
             .y(function (d){
                 return d.time;
             })
@@ -122,62 +189,116 @@
                 return [d];
             });
 
-            var stacked = stack(data); // gives us a stacked object with y0 and y...
+            // Baseline bar
+
+            var data_baseline = append_ramp_up(data, 0, 1); // the second param is zero because we are splitting it
+            // 0 times which is our baseline.
+
+            var stacked_baseline = stack(data_baseline); // gives us a stacked object with y0 and y...
             // But we don't really want a vertical barchart we want it to be horizontal so, lets rename it
 
-            var i;
-            for(i = 0; i < stacked.length; i++){ // renaming y0 to x0 and x to y for the stacked array.
-                stacked[i].x0 = stacked[i]['y0'];
-                stacked[i].x = stacked[i]['y'];
-                delete stacked[i].y0;
-                delete stacked[i].y;
-            }
+            stacked_baseline = rename_y(stacked_baseline);
 
-            xAxisG.call(xAxis);
-
-            xScale.domain([0, 528]); // here you need to fix the scale, upper limit so it's easier to compare.
-
-            yScale.domain(stacked.map(function(d){
+            yScale.domain(stacked_baseline.map(function(d){
                 return d.task;
             }));
 
-
-            color.domain(["Ramp up", "Udemy Data viz course",  "Write Email", "Create shopping list",
-                "Finish expense report", "Plan road trip",  "Write thank you note", "Update LinkedIn profile",
-                "Write cover letter", "Plan friend's birthday","Get unread emails to zero"]); // include black as
-                // ramp_up time
 
             // join
-            var rects = g.selectAll("rect")
-                  .data(stacked);
+            var rects_base = g_base.selectAll("rect")
+                  .data(stacked_baseline);
+
+            var rects_label = rects_base.append("text")
+                    .attr("dy", ".35em")
+                    .text(function(d) { return d.task; });
 
             //enter phase
-            rects.enter().append("rect");
+            rects_base.enter().append("rect");
 
             //update phase
-            rects.attr("x", function(d){return xScale(d.x0)})
+            rects_base.attr("x", function(d){return xScale(d.x0)})
                     .style("fill", function(d){return color(d.task)})
-                    .attr("y", height)
+                    .attr("y", margin.top + 1)
                     .attr("width", function(d) { return xScale(d.x); })
-                    .attr("height", -height);// fix this. it's not elegant and it doesn't allow you to show the axis.
+                    .attr("height", bar_height)
+                    .on("mouseover", function(d){
+                        tooltip.text(d.task);
+                        tooltip.style("visibility", "visible");})
+                    .on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
+                    .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
 
             //exit phase
-            rects.exit().remove();
+            rects_base.exit().remove();
 
-            console.log(data.map(function(d){
+            // now the SIMULTATION plot
+            //var data_baseline = append_ramp_up(data, 1); // the second param is zero because we are splitting it
+            // 0 times which is our baseline.
+
+            var data_sim = append_ramp_up(data, slider_val-1, 20); // the second param is zero because we are splitting it
+            // 0 times which is our baseline.
+
+            var stacked_sim = stack(data_sim); // gives us a stacked object with y0 and y...
+            // But we don't really want a vertical barchart we want it to be horizontal so, lets rename it
+
+            stacked_sim = rename_y(stacked_sim);
+
+            yScale.domain(stacked_sim.map(function(d){
                 return d.task;
             }));
+
+            // join
+            var rects_sim = g_sim.selectAll("rect")
+                    .data(stacked_sim);
+
+            //enter phase
+            rects_sim.enter().append("rect");
+
+            //update phase
+            rects_sim.attr("x", function(d){return xScale(d.x0)})
+                    .style("fill", function(d){return color(d.task)})
+                    .attr("y", bar_spacing/2)
+                    .attr("width", function(d) { return xScale(d.x); })
+                    .attr("height", bar_height)
+                    .on("mouseover", function(d){
+                        tooltip.text(d.task);
+                        tooltip.style("visibility", "visible");})
+                    .on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
+                    .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
+
+            //exit phase
+            rects_sim.exit().remove();
+
+
         }
-
-
-
 
 	</script>
 </body>
 <style>
+    body {
+        font-family: "Lucida Sans Unicode";
+        font-size: 13px;
+    }
     .svg-area{
         float:left;
         display: inline-block;
+    }
+    .x-axis text {
+        font-size: 11px;
+    }
+    .x-axis line,
+    .x-axis path {
+        fill: none;
+        stroke: grey;
+        shape-rendering: crispEdges;
+    }
+    #axis-label {
+        font-size: 15px;
+    }
+    .tooltip {
+        position: absolute;
+        pointer-events: none;
+        background-color: white;
+        font-weight: bold;
     }
     .controls {
         width: 230px;
