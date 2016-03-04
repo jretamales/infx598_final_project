@@ -5,28 +5,111 @@
     <title></title>
 </head>
 <body>
+    <h1>Visualizing Multitasking</h1>
+        <div class="explanation">
+            <p>Explain the experiment here dfodsfkosdkfokdfsokdsfokdfsokdfsokdfsokdsoksdfokodskodfkodskfodskokdfsokdsoksdffokdfsokdfodfs
+            dskjdsfijdfsijdfsijdfsjdfskjdfskjdfksjdfskjdfskjdfskjdfskjdfs
+            dsfksdfjfdskjkdfsjkdf</p>
+        </div>
+    <div class="experimentation" id="rows">
+        <h2>Type each word and numbers repeatedly</h2>
+        <h3>First the word "visualize" in the first row below</h3>
+        <input type ="text" class="input_exp letter" id = "first_letter_repeat"/>
+        <input type ="text" class="input_exp letter" />
+        <input type ="text" class="input_exp letter" />
+        <input type ="text" class="input_exp letter" />
+        <input type ="text" class="input_exp letter" />
+        <input type ="text" class="input_exp letter" />
+        <input type ="text" class="input_exp letter" />
+        <input type ="text" class="input_exp letter" />
+        <input type ="text" class="input_exp letter" />
+        <h3>Continue typing the numbers from 1 to 9 in the second row</h3>
+        <input type ="text" class="input_exp number" />
+        <input type ="text" class="input_exp number" />
+        <input type ="text" class="input_exp number" />
+        <input type ="text" class="input_exp number" />
+        <input type ="text" class="input_exp number" />
+        <input type ="text" class="input_exp number" />
+        <input type ="text" class="input_exp number" />
+        <input type ="text" class="input_exp number" />
+        <input type ="text" class="input_exp number" id = "last_number_repeat"/>
+    </div>
+    <div class="experimentation" id="columns">
+        <h2>Now it's the same task but alternating</h2>
+        <h3>Type alternately the word visualize and numbers 1 to 9</h3>
+        <div class ="alternate">
+            <input type ="text" class="input_exp letter" id = "first_letter_alt"/>
+            <input type ="text" class="input_exp number" />
+        </div>
+        <div class ="alternate">
+            <input type ="text" class="input_exp letter" />
+            <input type ="text" class="input_exp number" />
+        </div>
+        <div class ="alternate">
+            <input type ="text" class="input_exp letter" />
+            <input type ="text" class="input_exp number" />
+        </div>
+        <div class ="alternate">
+            <input type ="text" class="input_exp letter" />
+            <input type ="text" class="input_exp number" />
+        </div>
+        <div class ="alternate">
+            <input type ="text" class="input_exp letter" />
+            <input type ="text" class="input_exp number" />
+        </div>
+        <div class ="alternate">
+            <input type ="text" class="input_exp letter" />
+            <input type ="text" class="input_exp number" />
+        </div>
+        <div class ="alternate">
+            <input type ="text" class="input_exp letter" />
+            <input type ="text" class="input_exp number" />
+        </div>
+        <div class ="alternate">
+            <input type ="text" class="input_exp letter" />
+            <input type ="text" class="input_exp number" />
+        </div>
+        <div class ="alternate">
+            <input type ="text" class="input_exp letter" />
+            <input type ="text" class="input_exp number" id = "last_number_alt"/>
+        </div>
+        </div>
+    </div>
+    <div class = "clocks">
+    </div>
+    <div class = "explanation">
+        <h2>Visualization</h2>
+    <p>Explain visualization here dkfnojdidflksdfkjhdsfklsdkjhksdhfksdhfkjshdfkjhsdkjhksdjfhkjdshhdshkshdfkjdsfhkjhdfskhdfskdfhs\
+    dsfdsjfhdskfhksdfjkdfjkdf</p>
+    </div>
     <div id="Chart"></div>
     <div class = "controls">
         <div class = "mycheckox">
             <ul class="checkbox-grid">
-                <li><input type="checkbox" value= 60 name="checkbox15" id = "checkbox1"><label for="checkbox1">Writing short Email</label></li>
-                <li><input type="checkbox" value= 20 name="checkbox15" id = "checkbox2"><label for="checkbox2">Creating a simple bar chart</label></li>
-                <li><input type="checkbox" value= 45 name="checkbox15" id = "checkbox3"><label for="checkbox3">Cleaning up desktop</label></li>
-                <li><input type="checkbox" value= 90 name="checkbox15" id = "checkbox4"><label for="checkbox4">Adding up weekly expenses/label</label></li>
-                <li><input type="checkbox" value= 45 name="checkbox15" id = "checkbox5"><label for="checkbox5">Plan road trip</label></li>
-                <li><input type="checkbox" value= 20 name="checkbox15" id = "checkbox6"><label for="checkbox6">Write thank you note</label></li>
-                <li><input type="checkbox" value= 60 name="checkbox15" id = "checkbox7"><label for="checkbox7">Update LinkedIn profile</label></li>
-                <li><input type="checkbox" value= 20 name="checkbox15" id = "checkbox8"><label for="checkbox8">Write cover letter</label></li>
-                <li><input type="checkbox" value= 60 name="checkbox15" id = "checkbox9"><label for="checkbox9">Plan friend's birthday</label></li>
-                <li><input type="checkbox" value= 60 name="checkbox15" id = "checkbox10"><label for="checkbox10">Get unread emails to zero</label></li>
+                <li><input type="checkbox" value= "8-2" name="checkbox15" id = "checkbox1">
+                    <label for="checkbox1">Writing short Email</label>
+                    <p style="display: inline">(8 min, mid familiarity)</p>
+                </li>
+                <li><input type="checkbox" value= "5-1" name="checkbox15" id = "checkbox2">
+                    <label for="checkbox2">Creating a simple bar chart</label>
+                    <p style="display: inline">(5 min, low familiarity)</p>
+                </li>
+                <li><input type="checkbox" value= "8-2" name="checkbox15" id = "checkbox3">
+                    <label for="checkbox3">Cleaning up desktop</label>
+                    <p style="display: inline">(8 min, mid familiarity)</p>
+                </li>
+                <li><input type="checkbox" value= "9-4" name="checkbox15" id = "checkbox4">
+                    <label for="checkbox4">Adding up weekly expenses</label>
+                    <p style="display: inline">(9 min, High familiarity)</p>
+                </li>
             </ul>
         </div>
         <hr width="95%">
         <div class = "myslider">
-            <input type="range" id="MTlevelSlider" name = "myslider" class="vHorizon" min="1" max="98" step="1" value="0"
+            <input type="range" id="MTlevelSlider" name = "myslider" class="vHorizon" min="1" max="50" step="1" value="1"
                    style="background-color: #00aec8;">
             <label for="textInput">Number of Switches:</label>
-            <input type="text" id="textInput" value="0" readonly style="border:0; color:#f6931f;
+            <input type="text" id="textInput" value="1" readonly style="border:0; color:#f6931f;
             font-weight:bold;">
         </div>
     </div>
@@ -37,27 +120,71 @@
 	</script>
 	<script>
 
+        // STAGE 0: HERE WE CREATE THE ORIGINAL ARRAYS BASED ON THE CHECKBOX LABELS AND THE PRESPECIFIED TIME THAT EACH
+        // TASK TAKE AND THEIR FAMILIARITY.
+        var start_rep = 0;
+        var end_rep = 0;
+        var start_alt = 0;
+        var end_alt = 0;
+
+        $("#first_letter_repeat").change(function(){
+            start_rep = new Date();
+            (function update() {
+                var now = new Date();
+                if (end_rep===0) {
+                    field
+                            .each(function (d) {
+                                d.previous = d.value, d.value = d.update(now);
+                            }); // maybe here just changing
+                    // each for something more manual works, try this first.
+
+                path.transition()
+                        .ease("elastic")
+                        .duration(750)
+                        .attrTween("d", arcTween);
+
+                label
+                        .text(function(d) { return d.value + d.label; });
+
+                setTimeout(update, 1000 - (now % 1000));
+                }
+            })()
+        });
+
+        $("#last_number_repeat").change(function(){
+            end_rep = new Date();
+        });
+
+        $("#first_letter_repeat").change(function(){
+            start_alt = new Date();
+        });
+
+        $("#last_number_repeat").change(function(){
+            end_alt = new Date();
+        });
+
+        var orig_tasks_array = [];
+        var color_domain =['Ramp up'];
+
         var allcheckboxes = document.getElementsByName("checkbox15");
 
-        console.log(allcheckboxes);
+        for(var i = 0, len = allcheckboxes.length; i < len; i++) {
+            var label = getLabel(allcheckboxes[i].id);
+            var value = allcheckboxes[i].value;
+            orig_tasks_array.push({
+                task: label,
+                time: Number(value.split("-")[0]), // first argument is the time it takes for each task
+                ramp_up_time: 6,
+                familiarity: Number(value.split("-")[1])// second argument is the time it takes for each task
+            });
+            color_domain.push(label);
+        }
 
-        // original dataset that we will use as baseline
-        var full_tasks_array = [{task: "Udemy Data viz course", ramp_up_time: 6},
-            {task: "Write Email", ramp_up_time: 2},
-            {task:"Create shopping list", ramp_up_time: 4.5},
-            {task: "Finish expense report", ramp_up_time: 9},
-            {task: "Plan road trip", ramp_up_time: 4.5},
-            {task: "Write thank you note", ramp_up_time: 2},
-            {task: "Update LinkedIn profile", ramp_up_time: 6},
-            {task: "Write cover letter", ramp_up_time: 2},
-            {task: "Plan friend's birthday", ramp_up_time: 6},
-            {task: "Get unread emails to zero", ramp_up_time: 6}];
-
-        // creating functions to use
+        // STAGE 1: HERE WE CREATE ALL THE FUNCTIONS THAT WE NEED TO USE IN OUR CODE.
         function lookup_obj(obj, val){
             for(i=0; i < obj.length; i++){
                 if(obj[i].task === val){
-                    return obj[i].ramp_up_time;
+                    return obj[i].familiarity;
                 }
             }
         }
@@ -66,26 +193,26 @@
             return $("#"+id).next("label").html();
         }
 
-        function append_ramp_up(orig_array, n_switches, penalty_val){  /// *** need to fix here the bordeline condition with only one
+        function append_ramp_up(checkbox_array, n_switches, penalty_val){  /// *** need to fix here the bordeline condition with only one
             // task... there should be no rampup time.
             // also add penalizer for ramp_up time.
             var new_result = [];
-            var val;
             for (var i = 0; i<=n_switches;i++){
-                for (var j = 0; j < orig_array.length; j++) {
-                    val = orig_array[j].task;
+                for (var j = 0; j < checkbox_array.length; j++) {
+                    current_familiarity = lookup_obj(orig_tasks_array , checkbox_array[j].task);
                     if(j != 0) {
+                        prior_familiarity = lookup_obj(orig_tasks_array , checkbox_array[(j-1)].task);
                         new_result.push({
                             task: "Ramp up",
-                            time: (lookup_obj(full_tasks_array, val)) / ((n_switches / penalty_val) + 1)
+                            time: 0.487 + 0.118*prior_familiarity - 0.069*current_familiarity // this from the paper
                         });
-                        new_result.push({task: orig_array[j].task, time: (orig_array[j].time) / (n_switches + 1)});
+                        new_result.push({task: checkbox_array[j].task, time: (checkbox_array[j].time) / (n_switches + 1)});
                     }// object here with time.
                     else{
                         new_result.push({
                             task: "Ramp up",
                             time: 0});
-                        new_result.push({task: orig_array[j].task, time: (orig_array[j].time) / (n_switches + 1)});
+                        new_result.push({task: checkbox_array[j].task, time: (checkbox_array[j].time) / (n_switches + 1)});
                     }
                     }
                 }
@@ -105,7 +232,7 @@
 
         $(".checkbox-grid li").change(function(event){
             dataset = $("input:checkbox:checked").map(function(){
-                return {task: getLabel(this.id), time: +this.value};
+                return {task: getLabel(this.id), time: (this.value).split("-")[0]};
             }).get();
             render(dataset);
         });
@@ -119,8 +246,58 @@
         });
 
 
+// #########################           D3             ######################################################//
+        // D3  CLOCKS
 
-        // now comes the d3 part
+        var width_clocks = 600,
+                height_clocks = 300;
+
+        // conditional here.
+        var fields = [
+            {value: 60, size: 60, label: "m", update: function(date) {tmp_min = Math.floor((date-start_rep)/(60*1000));
+                return tmp_min; }},
+            {value: 60, size: 60, label: "s", update: function(date) {
+                tmp_seg = Math.round((date-start_rep)/1000);
+                return tmp_seg-(tmp_min*60);}} // insert start_alt here
+        ];
+
+        var arc = d3.svg.arc()
+                .innerRadius(width_clocks / 4.5 - 45)
+                .outerRadius(height_clocks / 4.5 - 5)
+                .startAngle(0)
+                .endAngle(function(d) { return (d.value / d.size) * 2 * Math.PI; });
+
+        var svg = d3.select(".clocks").append("svg")
+                .attr("width", width_clocks)
+                .attr("height", height_clocks);
+
+        var field = svg.selectAll(".field")
+                .data(fields)
+                .enter().append("g")
+                .attr("transform", function(d, i) {
+                    return "translate(" + (i * 2 + 1.25) / 6.5 * width_clocks + "," + height_clocks / 2 + ")"; })
+                .attr("class", "field");
+
+        field.append("path")
+                .attr("class", "path path--background")
+                .attr("d", arc);
+
+        var path = field.append("path")
+                .attr("class", "path path--foreground");
+
+        var label = field.append("text")
+                .attr("class", "label")
+                .attr("dy", ".35em");
+
+
+        function arcTween(b) {
+            var i = d3.interpolate({value: b.previous}, b);
+            return function(t) {
+                return arc(i(t));
+            };
+        }
+
+        // D3 bars
         var margin = {top: 10, right: 70, bottom: 10, left: 50};
         var width = 800;
         var height = 110;
@@ -145,26 +322,26 @@
             .attr("class", "x-axis")
             .attr("transform", "translate(0," + margin.top + ")"); // fix this, is not showing
 
+        /// Fix this part to make it flexible remember that you changed values.
         var timeTotal = 0;  // Variable to hold your total
 
         for(var i = 0, len = allcheckboxes.length; i < len; i++) {
-            timeTotal += +allcheckboxes[i].value;  // Iterate over your first array and then grab the second element add the values up
+            var iter = allcheckboxes[i].value;
+            timeTotal += Number(iter.split("-")[0]);  // Iterate over your first array and then grab the second element add the values up
         }
 
         var xScale = d3.scale
                 .linear()
-                .domain([0, timeTotal*1.5])
+                .domain([0, timeTotal*4])
                 .range([0, width]);
 
         var yScale = d3.scale.ordinal()
                     .rangeBands([0, height]);
 
         var color = d3.scale.ordinal()
+                .domain(color_domain)
                 .range(["#000000", "#1f77b4","#ff7f0e","#2ca02c", "#d62728", "#9467bd",
-                    "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"]) // custom scale to include black for rampup
-                .domain(["Ramp up", "Udemy Data viz course",  "Write Email", "Create shopping list",
-            "Finish expense report", "Plan road trip",  "Write thank you note", "Update LinkedIn profile",
-            "Write cover letter", "Plan friend's birthday","Get unread emails to zero"]);
+                    "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"]) // custom scale to include black for rampup;
 
         var xAxis = d3.svg
                     .axis()
@@ -177,6 +354,8 @@
                 .style("position", "absolute")
                 .style("z-index", "10")
                 .style("visibility", "hidden");
+
+
         function render(data){
 
             xAxisG.call(xAxis);
@@ -278,6 +457,62 @@
         font-family: "Lucida Sans Unicode";
         font-size: 13px;
     }
+    .explanation{
+        display: block;
+    }
+    .experimentation{
+             display: block;
+             width: 1000px;
+             margin-bottom: 5px;
+         }
+    #rows{
+        display: inline-block;
+        width: 500px;
+        vertical-align: top;
+        margin-right: 100px;
+    }
+    #columns{
+        display: inline-block;
+        width: 500px;
+    }
+    .input_exp{
+        width:22px;
+        height: 22px;
+        font-size: 20px;
+        text-align: center;
+    }
+    .letter{
+        color: coral;
+        font-weight: bold;
+    }
+    .number{
+        color: brown;
+        font-weight: bold;
+    }
+    .alternate{
+        display: block;
+        margin-left: 100px;
+        margin-right: 100px;
+    }
+    .alternate .input_exp{
+        margin-left: 1.5px;
+        margin-right: 1.5px;
+        margin-bottom: 5px;
+    }
+    .clocks{
+        display: block;
+        width: 1000px;
+        margin-bottom: 80px;
+    }
+    .path--background {
+        fill: none;
+        stroke: #000;
+        stroke-width: 2px;
+    }
+    .label {
+        font: 24px sans-serif;
+        text-anchor: middle;
+    }
     .svg-area{
         float:left;
         display: inline-block;
@@ -301,7 +536,7 @@
         font-weight: bold;
     }
     .controls {
-        width: 230px;
+        width: 400px;
         display: inline-block;
         border-style: solid;
     }
@@ -313,9 +548,10 @@
         list-style-type: none;
     }
     #MTlevelSlider{
-        width:200px;
+        width:380px;
         margin-left: 5px;
         margin-right: 5px;
+        display: block;
     }
 </style>
 </html>
