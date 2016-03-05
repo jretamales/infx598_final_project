@@ -14,65 +14,48 @@
     <div class="experimentation" id="rows">
         <h2>Type each word and numbers repeatedly</h2>
         <h3>First the word "visualize" in the first row below</h3>
-        <input type ="text" class="input_exp letter" id = "first_letter_repeat"/>
-        <input type ="text" class="input_exp letter" />
-        <input type ="text" class="input_exp letter" />
-        <input type ="text" class="input_exp letter" />
-        <input type ="text" class="input_exp letter" />
-        <input type ="text" class="input_exp letter" />
-        <input type ="text" class="input_exp letter" />
-        <input type ="text" class="input_exp letter" />
-        <input type ="text" class="input_exp letter" />
+        <input type ="text" class="input_exp letter rep" id = "first_letter_repeat" maxlength=1/>
+        <input type ="text" class="input_exp letter rep" maxlength=1/>
+        <input type ="text" class="input_exp letter rep" maxlength=1/>
+        <input type ="text" class="input_exp letter rep" maxlength=1/>
+        <input type ="text" class="input_exp letter rep" maxlength=1/>
+        <input type ="text" class="input_exp letter rep" maxlength=1/>
+        <input type ="text" class="input_exp letter rep" maxlength=1/>
+        <input type ="text" class="input_exp letter rep" maxlength=1/>
+        <input type ="text" class="input_exp letter rep" maxlength=1/>
         <h3>Continue typing the numbers from 1 to 9 in the second row</h3>
-        <input type ="text" class="input_exp number" />
-        <input type ="text" class="input_exp number" />
-        <input type ="text" class="input_exp number" />
-        <input type ="text" class="input_exp number" />
-        <input type ="text" class="input_exp number" />
-        <input type ="text" class="input_exp number" />
-        <input type ="text" class="input_exp number" />
-        <input type ="text" class="input_exp number" />
-        <input type ="text" class="input_exp number" id = "last_number_repeat"/>
+        <input type ="text" class="input_exp number rep" maxlength=1 />
+        <input type ="text" class="input_exp number rep" maxlength=1/>
+        <input type ="text" class="input_exp number rep" maxlength=1/>
+        <input type ="text" class="input_exp number rep" maxlength=1/>
+        <input type ="text" class="input_exp number rep" maxlength=1/>
+        <input type ="text" class="input_exp number rep" maxlength=1/>
+        <input type ="text" class="input_exp number rep" maxlength=1/>
+        <input type ="text" class="input_exp number rep" maxlength=1/>
+        <input type ="text" class="input_exp number rep" id = "last_number_repeat" maxlength=1 />
     </div>
     <div class="experimentation" id="columns">
         <h2>Now it's the same task but alternating</h2>
         <h3>Type alternately the word visualize and numbers 1 to 9</h3>
         <div class ="alternate">
-            <input type ="text" class="input_exp letter" id = "first_letter_alt"/>
-            <input type ="text" class="input_exp number" />
-        </div>
-        <div class ="alternate">
-            <input type ="text" class="input_exp letter" />
-            <input type ="text" class="input_exp number" />
-        </div>
-        <div class ="alternate">
-            <input type ="text" class="input_exp letter" />
-            <input type ="text" class="input_exp number" />
-        </div>
-        <div class ="alternate">
-            <input type ="text" class="input_exp letter" />
-            <input type ="text" class="input_exp number" />
-        </div>
-        <div class ="alternate">
-            <input type ="text" class="input_exp letter" />
-            <input type ="text" class="input_exp number" />
-        </div>
-        <div class ="alternate">
-            <input type ="text" class="input_exp letter" />
-            <input type ="text" class="input_exp number" />
-        </div>
-        <div class ="alternate">
-            <input type ="text" class="input_exp letter" />
-            <input type ="text" class="input_exp number" />
-        </div>
-        <div class ="alternate">
-            <input type ="text" class="input_exp letter" />
-            <input type ="text" class="input_exp number" />
-        </div>
-        <div class ="alternate">
-            <input type ="text" class="input_exp letter" />
-            <input type ="text" class="input_exp number" id = "last_number_alt"/>
-        </div>
+            <input type ="text" class="input_exp letter" maxlength=1 id = "first_letter_alt"/>
+            <input type ="text" class="input_exp number" maxlength=1 />
+            <input type ="text" class="input_exp letter" maxlength=1 />
+            <input type ="text" class="input_exp number" maxlength=1/>
+            <input type ="text" class="input_exp letter" maxlength=1 />
+            <input type ="text" class="input_exp number" maxlength=1/>
+            <input type ="text" class="input_exp letter" maxlength=1/>
+            <input type ="text" class="input_exp number" maxlength=1/>
+            <input type ="text" class="input_exp letter" maxlength=1/>
+            <input type ="text" class="input_exp number" maxlength=1/>
+            <input type ="text" class="input_exp letter" maxlength=1/>
+            <input type ="text" class="input_exp number" maxlength=1/>
+            <input type ="text" class="input_exp letter" maxlength=1/>
+            <input type ="text" class="input_exp number" maxlength=1/>
+            <input type ="text" class="input_exp letter" maxlength=1/>
+            <input type ="text" class="input_exp number" maxlength=1/>
+            <input type ="text" class="input_exp letter" maxlength=1/>
+            <input type ="text" class="input_exp number" maxlength=1 id = "last_number_alt"/>
         </div>
     </div>
     <div class = "clocks">
@@ -127,23 +110,32 @@
         var start_alt = 0;
         var end_alt = 0;
 
+        // shift focus to next field
+        $(".input_exp").keyup(function () {
+            if (this.value.length == this.maxLength) {
+                $(this).next('.input_exp').focus();
+            }
+        });
+
+
+        // whenever the user starts typing we start the clock
         $("#first_letter_repeat").change(function(){
             start_rep = new Date();
             (function update() {
                 var now = new Date();
                 if (end_rep===0) {
-                    field
+                    field_rep
                             .each(function (d) {
                                 d.previous = d.value, d.value = d.update(now);
                             }); // maybe here just changing
                     // each for something more manual works, try this first.
 
-                path.transition()
+                path_rep.transition()
                         .ease("elastic")
                         .duration(750)
                         .attrTween("d", arcTween);
 
-                label
+                label_rep
                         .text(function(d) { return d.value + d.label; });
 
                 setTimeout(update, 1000 - (now % 1000));
@@ -155,11 +147,32 @@
             end_rep = new Date();
         });
 
-        $("#first_letter_repeat").change(function(){
+        // whenever the user starts typing we start the second clock
+        $("#first_letter_alt").change(function(){
             start_alt = new Date();
+            (function update() {
+                var now = new Date();
+                if (end_alt===0) {
+                    field_alt
+                            .each(function (d) {
+                                d.previous = d.value, d.value = d.update(now);
+                            }); // maybe here just changing
+                    // each for something more manual works, try this first.
+
+                    path_alt.transition()
+                            .ease("elastic")
+                            .duration(750)
+                            .attrTween("d", arcTween);
+
+                    label_alt
+                            .text(function(d) { return d.value + d.label; });
+
+                    setTimeout(update, 1000 - (now % 1000));
+                }
+            })()
         });
 
-        $("#last_number_repeat").change(function(){
+        $("#last_number_alt").change(function(){
             end_alt = new Date();
         });
 
@@ -249,11 +262,10 @@
 // #########################           D3             ######################################################//
         // D3  CLOCKS
 
-        var width_clocks = 600,
-                height_clocks = 300;
+        var width_clocks = 300,
+                height_clocks = 150;
 
-        // conditional here.
-        var fields = [
+        var fields_rep = [
             {value: 60, size: 60, label: "m", update: function(date) {tmp_min = Math.floor((date-start_rep)/(60*1000));
                 return tmp_min; }},
             {value: 60, size: 60, label: "s", update: function(date) {
@@ -262,30 +274,30 @@
         ];
 
         var arc = d3.svg.arc()
-                .innerRadius(width_clocks / 4.5 - 45)
-                .outerRadius(height_clocks / 4.5 - 5)
+                .innerRadius((height_clocks)/ 4)
+                .outerRadius((height_clocks -10)/ 2)
                 .startAngle(0)
                 .endAngle(function(d) { return (d.value / d.size) * 2 * Math.PI; });
 
-        var svg = d3.select(".clocks").append("svg")
+        var svg_rep = d3.select("#rows").append("svg")
                 .attr("width", width_clocks)
                 .attr("height", height_clocks);
 
-        var field = svg.selectAll(".field")
-                .data(fields)
+        var field_rep = svg_rep.selectAll(".field")
+                .data(fields_rep)
                 .enter().append("g")
                 .attr("transform", function(d, i) {
-                    return "translate(" + (i * 2 + 1.25) / 6.5 * width_clocks + "," + height_clocks / 2 + ")"; })
+                    return "translate("+ (i*height_clocks + height_clocks/2) +"," + height_clocks / 2 + ")"; })
                 .attr("class", "field");
 
-        field.append("path")
+        field_rep.append("path")
                 .attr("class", "path path--background")
                 .attr("d", arc);
 
-        var path = field.append("path")
+        var path_rep = field_rep.append("path")
                 .attr("class", "path path--foreground");
 
-        var label = field.append("text")
+        var label_rep = field_rep.append("text")
                 .attr("class", "label")
                 .attr("dy", ".35em");
 
@@ -296,6 +308,38 @@
                 return arc(i(t));
             };
         }
+
+        var fields_alt = [
+            {value: 60, size: 60, label: "m", update: function(date) {tmp_min = Math.floor((date-start_alt)/(60*1000));
+                return tmp_min; }},
+            {value: 60, size: 60, label: "s", update: function(date) {
+                tmp_seg = Math.round((date-start_alt)/1000);
+                return tmp_seg-(tmp_min*60);}} // insert start_alt here
+        ];
+
+        var svg_alt = d3.select("#columns").append("svg")
+                .attr("width", width_clocks)
+                .attr("height", height_clocks)
+                .style('display', 'inline-block');
+
+        var field_alt = svg_alt.selectAll(".field")
+                .data(fields_alt)
+                .enter().append("g")
+                .attr("transform", function(d, i) {
+                    return "translate("+ (i*height_clocks + height_clocks/2) +"," + height_clocks / 2 + ")"; })
+                .attr("class", "field");
+
+        field_alt.append("path")
+                .attr("class", "path path--background")
+                .attr("d", arc);
+
+        var path_alt = field_alt.append("path")
+                .attr("class", "path path--foreground");
+
+        var label_alt = field_alt.append("text")
+                .attr("class", "label")
+                .attr("dy", ".35em");
+
 
         // D3 bars
         var margin = {top: 10, right: 70, bottom: 10, left: 50};
@@ -322,7 +366,7 @@
             .attr("class", "x-axis")
             .attr("transform", "translate(0," + margin.top + ")"); // fix this, is not showing
 
-        /// Fix this part to make it flexible remember that you changed values.
+        //here we are just adding all the values to compute the time total. That way we can scale appropriately.
         var timeTotal = 0;  // Variable to hold your total
 
         for(var i = 0, len = allcheckboxes.length; i < len; i++) {
@@ -355,7 +399,7 @@
                 .style("z-index", "10")
                 .style("visibility", "hidden");
 
-
+        // 1 here insert another parameter to be able to use it within the function.
         function render(data){
 
             xAxisG.call(xAxis);
@@ -378,6 +422,8 @@
 
             stacked_baseline = rename_y(stacked_baseline);
 
+            console.log(stacked_baseline);
+
             yScale.domain(stacked_baseline.map(function(d){
                 return d.task;
             }));
@@ -386,10 +432,6 @@
             // join
             var rects_base = g_base.selectAll("rect")
                   .data(stacked_baseline);
-
-            var rects_label = rects_base.append("text")
-                    .attr("dy", ".35em")
-                    .text(function(d) { return d.task; });
 
             //enter phase
             rects_base.enter().append("rect");
@@ -421,6 +463,8 @@
 
             stacked_sim = rename_y(stacked_sim);
 
+            //maybe bind here the stack array with the color and ramp up numbers, should we use the stack too?
+
             yScale.domain(stacked_sim.map(function(d){
                 return d.task;
             }));
@@ -450,6 +494,9 @@
 
         }
 
+        var fruits = ["Banana", "Orange", "Apple", "Mango", "Banana", "Orange", "Apple"];
+        var a = fruits.indexOf("Apple");
+        console.log(a);
 	</script>
 </body>
 <style>
@@ -490,9 +537,10 @@
         font-weight: bold;
     }
     .alternate{
-        display: block;
-        margin-left: 100px;
-        margin-right: 100px;
+        display: inline-block;
+        margin-left: 40px;
+        margin-right: 40px;
+        width: 80px;
     }
     .alternate .input_exp{
         margin-left: 1.5px;
