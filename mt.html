@@ -3,6 +3,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 </head>
 <body>
     <h1>Visualizing Multitasking</h1>
@@ -13,53 +14,59 @@
         </div>
     <div class="experimentation" id="rows">
         <h2>Type each word and numbers repeatedly</h2>
-        <h3>First the word "visualize" in the first row below</h3>
-        <input type ="text" class="input_exp letter rep" id = "first_letter_repeat" maxlength=1/>
-        <input type ="text" class="input_exp letter rep" maxlength=1/>
-        <input type ="text" class="input_exp letter rep" maxlength=1/>
-        <input type ="text" class="input_exp letter rep" maxlength=1/>
-        <input type ="text" class="input_exp letter rep" maxlength=1/>
-        <input type ="text" class="input_exp letter rep" maxlength=1/>
-        <input type ="text" class="input_exp letter rep" maxlength=1/>
-        <input type ="text" class="input_exp letter rep" maxlength=1/>
-        <input type ="text" class="input_exp letter rep" maxlength=1/>
-        <h3>Continue typing the numbers from 1 to 9 in the second row</h3>
-        <input type ="text" class="input_exp number rep" maxlength=1 />
-        <input type ="text" class="input_exp number rep" maxlength=1/>
-        <input type ="text" class="input_exp number rep" maxlength=1/>
-        <input type ="text" class="input_exp number rep" maxlength=1/>
-        <input type ="text" class="input_exp number rep" maxlength=1/>
-        <input type ="text" class="input_exp number rep" maxlength=1/>
-        <input type ="text" class="input_exp number rep" maxlength=1/>
-        <input type ="text" class="input_exp number rep" maxlength=1/>
-        <input type ="text" class="input_exp number rep" id = "last_number_repeat" maxlength=1 />
+        <div class = "repetitive">
+            <h3>First the word "visualize" in the first row below</h3>
+            <input type ="text" class="input_exp rep letter" id = "first_letter_repeat" maxlength=1/>
+            <input type ="text" class="input_exp rep letter" maxlength=1/>
+            <input type ="text" class="input_exp rep letter" maxlength=1/>
+            <input type ="text" class="input_exp rep letter" maxlength=1/>
+            <input type ="text" class="input_exp rep letter" maxlength=1/>
+            <input type ="text" class="input_exp rep letter" maxlength=1/>
+            <input type ="text" class="input_exp rep letter" maxlength=1/>
+            <input type ="text" class="input_exp rep letter" maxlength=1/>
+            <input type ="text" class="input_exp rep letter" maxlength=1/>
+            <h3>Continue typing the numbers from 1 to 9 in the second row</h3>
+            <input type ="text" class="input_exp rep number" maxlength=1 />
+            <input type ="text" class="input_exp rep number" maxlength=1 />
+            <input type ="text" class="input_exp rep number" maxlength=1 />
+            <input type ="text" class="input_exp rep number" maxlength=1 />
+            <input type ="text" class="input_exp rep number" maxlength=1 />
+            <input type ="text" class="input_exp rep number" maxlength=1 />
+            <input type ="text" class="input_exp rep number" maxlength=1 />
+            <input type ="text" class="input_exp rep number" maxlength=1 />
+            <input type ="text" class="input_exp rep number" maxlength=1 />
+            <button id = "finish_rep" type="button">Finish!</button>
+        </div>
     </div>
     <div class="experimentation" id="columns">
         <h2>Now it's the same task but alternating</h2>
-        <h3>Type alternately the word visualize and numbers 1 to 9</h3>
         <div class ="alternate">
-            <input type ="text" class="input_exp letter" maxlength=1 id = "first_letter_alt"/>
-            <input type ="text" class="input_exp number" maxlength=1 />
-            <input type ="text" class="input_exp letter" maxlength=1 />
-            <input type ="text" class="input_exp number" maxlength=1/>
-            <input type ="text" class="input_exp letter" maxlength=1 />
-            <input type ="text" class="input_exp number" maxlength=1/>
-            <input type ="text" class="input_exp letter" maxlength=1/>
-            <input type ="text" class="input_exp number" maxlength=1/>
-            <input type ="text" class="input_exp letter" maxlength=1/>
-            <input type ="text" class="input_exp number" maxlength=1/>
-            <input type ="text" class="input_exp letter" maxlength=1/>
-            <input type ="text" class="input_exp number" maxlength=1/>
-            <input type ="text" class="input_exp letter" maxlength=1/>
-            <input type ="text" class="input_exp number" maxlength=1/>
-            <input type ="text" class="input_exp letter" maxlength=1/>
-            <input type ="text" class="input_exp number" maxlength=1/>
-            <input type ="text" class="input_exp letter" maxlength=1/>
-            <input type ="text" class="input_exp number" maxlength=1 id = "last_number_alt"/>
+            <h3>First the word "visualize" in the first row below</h3>
+            <input type ="text" class="input_exp letter alt" id = "first_letter_alt" maxlength=1/>
+            <input type ="text" class="input_exp letter alt" id = "second_letter_alt" maxlength=1/>
+            <input type ="text" class="input_exp letter alt" id = "third_letter_alt" maxlength=1/>
+            <input type ="text" class="input_exp letter alt" id = "fourth_letter_alt" maxlength=1/>
+            <input type ="text" class="input_exp letter alt" id = "fifth_letter_alt" maxlength=1/>
+            <input type ="text" class="input_exp letter alt" id = "sixth_letter_alt" maxlength=1/>
+            <input type ="text" class="input_exp letter alt" id = "seventh_letter_alt" maxlength=1/>
+            <input type ="text" class="input_exp letter alt" id = 'eigth_letter_alt' maxlength=1/>
+            <input type ="text" class="input_exp letter alt" id = "nineth_letter_alt" maxlength=1/>
+            <h3>Continue typing the numbers from 1 to 9 in the second row</h3>
+            <input type ="text" class="input_exp number alt" id = "first_number_alt" maxlength=1 />
+            <input type ="text" class="input_exp number alt" id = "second_number_alt" maxlength=1 />
+            <input type ="text" class="input_exp number alt" id = "third_number_alt" maxlength=1 />
+            <input type ="text" class="input_exp number alt" id = "fourth_number_alt" maxlength=1 />
+            <input type ="text" class="input_exp number alt" id = "fifth_number_alt" maxlength=1 />
+            <input type ="text" class="input_exp number alt" id = "sixth_number_alt" maxlength=1 />
+            <input type ="text" class="input_exp number alt" id = "seventh_number_alt" maxlength=1 />
+            <input type ="text" class="input_exp number alt" id = 'eigth_number_alt' maxlength=1 />
+            <input type ="text" class="input_exp number alt" id = "nineth_number_alt" maxlength=1 />
+            <button id = "finish_alt"  type="button">Finish!</button>
         </div>
     </div>
     <div class = "clocks">
     </div>
+    <a href="#Chart" class = "learn_more" onclick="window.scrollTo(0, 500)">Learn More</a>
     <div class = "explanation">
         <h2>Visualization</h2>
     <p>Explain visualization here dkfnojdidflksdfkjhdsfklsdkjhksdhfksdhfkjshdfkjhsdkjhksdjfhkjdshhdshkshdfkjdsfhkjhdfskhdfskdfhs\
@@ -68,216 +75,83 @@
     <div id="Chart"></div>
     <div class = "controls">
         <div class = "mycheckox">
-            <ul class="checkbox-grid">
-                <li><input type="checkbox" value= "8-2" name="checkbox15" id = "checkbox1">
-                    <label for="checkbox1">Writing short Email</label>
-                    <p style="display: inline">(8 min, mid familiarity)</p>
-                </li>
-                <li><input type="checkbox" value= "5-1" name="checkbox15" id = "checkbox2">
-                    <label for="checkbox2">Creating a simple bar chart</label>
-                    <p style="display: inline">(5 min, low familiarity)</p>
-                </li>
-                <li><input type="checkbox" value= "8-2" name="checkbox15" id = "checkbox3">
-                    <label for="checkbox3">Cleaning up desktop</label>
-                    <p style="display: inline">(8 min, mid familiarity)</p>
-                </li>
-                <li><input type="checkbox" value= "9-4" name="checkbox15" id = "checkbox4">
-                    <label for="checkbox4">Adding up weekly expenses</label>
-                    <p style="display: inline">(9 min, High familiarity)</p>
-                </li>
-            </ul>
+            <table class="tasks_table" style="width:100%">
+                <tr>
+                    <th>Task</th>
+                    <th>Complexity</th>
+                    <th>Familiarity</th>
+                    <th>Duration</th>
+                </tr>
+                <tr>
+                    <td><input class = "checkboxes" type="checkbox" value= "8-2" name="checkbox15" id = "checkbox1">
+                        <label class = "checkboxes_labels" for="checkbox1">Writing short Email</label></td>
+                    <td><input class="spinner complexity" name="value" value = "Mid"></td>
+                    <td><input class="spinner familiarity" name="value" value = "Familiar"></td>
+                    <td><input class="spinner time" name="value" value = 8></td>
+                </tr>
+                <tr>
+                    <td><input class = "checkboxes" type="checkbox" value= "5-1" name="checkbox15" id = "checkbox2">
+                        <label class = "checkboxes_labels" for="checkbox2">Creating a simple bar chart</label></td>
+                    <td><input class="spinner complexity" name="value" value = "Mid"></td>
+                    <td><input class="spinner familiarity" name="value" value = "Familiar"></td>
+                    <td><input class="spinner time" name="value" value = 8></td>
+                </tr>
+                <td><input class = "checkboxes" type="checkbox" value= "8-2" name="checkbox15" id = "checkbox3">
+                    <label class = "checkboxes_labels" for="checkbox3">Cleaning up desktop</label></td>
+                <td><input class="spinner complexity" name="value" value = "Mid"></td>
+                <td><input class="spinner familiarity" name="value" value = "Familiar"></td>
+                <td><input class="spinner time" name="value" value = 8></td>
+                </tr>
+                <tr><td><input class = "checkboxes" type="checkbox" value= "9-4" name="checkbox15" id = "checkbox4">
+                    <label class = "checkboxes_labels" for="checkbox4">Adding up weekly expenses</label></td>
+                    <td><input class="spinner complexity" name="value" value = "Mid"></td>
+                    <td><input class="spinner familiarity" name="value" value = "Familiar"></td>
+                    <td><input class="spinner time" name="value" value = 8></td>
+                </tr>
+            </table>
         </div>
         <hr width="95%">
         <div class = "myslider">
-            <input type="range" id="MTlevelSlider" name = "myslider" class="vHorizon" min="1" max="50" step="1" value="1"
+            <input type="range" id="MTlevelSlider" name = "myslider" class="vHorizon" min="1" max="20" step="1" value="1"
                    style="background-color: #00aec8;">
             <label for="textInput">Number of Switches:</label>
             <input type="text" id="textInput" value="1" readonly style="border:0; color:#f6931f;
             font-weight:bold;">
         </div>
+        <hr width="95%">
+        <div class = "radio">
+            <form>
+                <label><input  type="radio" name="mode" value="alternated" checked>Alternate Display</label>
+                <label><input  type="radio" name="mode" value="sorted" >Sorted Display</label>
+            </form>
+        </div>
     </div>
     <script src="00_js_libs/d3.v3.js"></script>
-    <script src="00_js_libs/d3-timer.v0.3.min.js"></script>
     <script type="text/javascript" src="00_js_libs/jquery-1.10.2.js"></script>
-	<script type="text/javascript">
-	</script>
+	<script type="text/javascript" src="00_js_libs/jquery-ui.js"></script>
 	<script>
+        // #################################### STAGE 1 TIMERS ###########################################
+        // ############################## STAGE 1.1 D3 VISUALIZATION OF TIMERS.
 
-        // STAGE 0: HERE WE CREATE THE ORIGINAL ARRAYS BASED ON THE CHECKBOX LABELS AND THE PRESPECIFIED TIME THAT EACH
-        // TASK TAKE AND THEIR FAMILIARITY.
-        var start_rep = 0;
-        var end_rep = 0;
-        var start_alt = 0;
-        var end_alt = 0;
-
-        // shift focus to next field
-        $(".input_exp").keyup(function () {
-            if (this.value.length == this.maxLength) {
-                $(this).next('.input_exp').focus();
-            }
-        });
-
-
-        // whenever the user starts typing we start the clock
-        $("#first_letter_repeat").change(function(){
-            start_rep = new Date();
-            (function update() {
-                var now = new Date();
-                if (end_rep===0) {
-                    field_rep
-                            .each(function (d) {
-                                d.previous = d.value, d.value = d.update(now);
-                            }); // maybe here just changing
-                    // each for something more manual works, try this first.
-
-                path_rep.transition()
-                        .ease("elastic")
-                        .duration(750)
-                        .attrTween("d", arcTween);
-
-                label_rep
-                        .text(function(d) { return d.value + d.label; });
-
-                setTimeout(update, 1000 - (now % 1000));
-                }
-            })()
-        });
-
-        $("#last_number_repeat").change(function(){
-            end_rep = new Date();
-        });
-
-        // whenever the user starts typing we start the second clock
-        $("#first_letter_alt").change(function(){
-            start_alt = new Date();
-            (function update() {
-                var now = new Date();
-                if (end_alt===0) {
-                    field_alt
-                            .each(function (d) {
-                                d.previous = d.value, d.value = d.update(now);
-                            }); // maybe here just changing
-                    // each for something more manual works, try this first.
-
-                    path_alt.transition()
-                            .ease("elastic")
-                            .duration(750)
-                            .attrTween("d", arcTween);
-
-                    label_alt
-                            .text(function(d) { return d.value + d.label; });
-
-                    setTimeout(update, 1000 - (now % 1000));
-                }
-            })()
-        });
-
-        $("#last_number_alt").change(function(){
-            end_alt = new Date();
-        });
-
-        var orig_tasks_array = [];
-        var color_domain =['Ramp up'];
-
-        var allcheckboxes = document.getElementsByName("checkbox15");
-
-        for(var i = 0, len = allcheckboxes.length; i < len; i++) {
-            var label = getLabel(allcheckboxes[i].id);
-            var value = allcheckboxes[i].value;
-            orig_tasks_array.push({
-                task: label,
-                time: Number(value.split("-")[0]), // first argument is the time it takes for each task
-                ramp_up_time: 6,
-                familiarity: Number(value.split("-")[1])// second argument is the time it takes for each task
-            });
-            color_domain.push(label);
-        }
-
-        // STAGE 1: HERE WE CREATE ALL THE FUNCTIONS THAT WE NEED TO USE IN OUR CODE.
-        function lookup_obj(obj, val){
-            for(i=0; i < obj.length; i++){
-                if(obj[i].task === val){
-                    return obj[i].familiarity;
-                }
-            }
-        }
-
-        function getLabel(id){
-            return $("#"+id).next("label").html();
-        }
-
-        function append_ramp_up(checkbox_array, n_switches, penalty_val){  /// *** need to fix here the bordeline condition with only one
-            // task... there should be no rampup time.
-            // also add penalizer for ramp_up time.
-            var new_result = [];
-            for (var i = 0; i<=n_switches;i++){
-                for (var j = 0; j < checkbox_array.length; j++) {
-                    current_familiarity = lookup_obj(orig_tasks_array , checkbox_array[j].task);
-                    if(j != 0) {
-                        prior_familiarity = lookup_obj(orig_tasks_array , checkbox_array[(j-1)].task);
-                        new_result.push({
-                            task: "Ramp up",
-                            time: 0.487 + 0.118*prior_familiarity - 0.069*current_familiarity // this from the paper
-                        });
-                        new_result.push({task: checkbox_array[j].task, time: (checkbox_array[j].time) / (n_switches + 1)});
-                    }// object here with time.
-                    else{
-                        new_result.push({
-                            task: "Ramp up",
-                            time: 0});
-                        new_result.push({task: checkbox_array[j].task, time: (checkbox_array[j].time) / (n_switches + 1)});
-                    }
-                    }
-                }
-            return new_result;
-        }
-
-        function rename_y(stacked_obj){ // simple function to rename y objects to x.
-            for(i = 0; i < stacked_obj.length; i++){
-                stacked_obj[i].x0 = stacked_obj[i]['y0'];
-                stacked_obj[i].x = stacked_obj[i]['y'];
-                delete stacked_obj[i].y0;
-                delete stacked_obj[i].y;
-            }
-            return stacked_obj;
-        }
-        var dataset;
-
-        $(".checkbox-grid li").change(function(event){
-            dataset = $("input:checkbox:checked").map(function(){
-                return {task: getLabel(this.id), time: (this.value).split("-")[0]};
-            }).get();
-            render(dataset);
-        });
-
-        var slider_val = $('input[name="myslider"]').val();
-
-        $('input[name="myslider"]').change(function(){
-            slider_val = $('input[name="myslider"]').val();
-            document.getElementById('textInput').value = slider_val;
-            render(dataset); // I get an error here. because dataset doesn
-        });
-
-
-// #########################           D3             ######################################################//
-        // D3  CLOCKS
-
-        var width_clocks = 300,
-                height_clocks = 150;
+        var width_clocks = 150,
+                height_clocks = 180;
 
         var fields_rep = [
-            {value: 60, size: 60, label: "m", update: function(date) {tmp_min = Math.floor((date-start_rep)/(60*1000));
-                return tmp_min; }},
-            {value: 60, size: 60, label: "s", update: function(date) {
-                tmp_seg = Math.round((date-start_rep)/1000);
-                return tmp_seg-(tmp_min*60);}} // insert start_alt here
+            {value_min: 60, value_seg:60, size: 60, label_min: "m", label_seg:"s",
+                update_min: function(date) {
+                    tmp_min = Math.floor((date-start_rep)/(60*1000));
+                    return tmp_min; },
+                update_seg: function(date) {
+                    tmp_seg = Math.round((date-start_rep)/1000);
+                    return tmp_seg-(tmp_min*60);}
+            } // insert start_alt here
         ];
 
         var arc = d3.svg.arc()
-                .innerRadius((height_clocks)/ 4)
-                .outerRadius((height_clocks -10)/ 2)
+                .innerRadius((width_clocks)/ 4)
+                .outerRadius((width_clocks -10)/ 2)
                 .startAngle(0)
-                .endAngle(function(d) { return (d.value / d.size) * 2 * Math.PI; });
+                .endAngle(function(d) { return (d.value_seg / d.size) * 2 * Math.PI; });
 
         var svg_rep = d3.select("#rows").append("svg")
                 .attr("width", width_clocks)
@@ -286,8 +160,7 @@
         var field_rep = svg_rep.selectAll(".field")
                 .data(fields_rep)
                 .enter().append("g")
-                .attr("transform", function(d, i) {
-                    return "translate("+ (i*height_clocks + height_clocks/2) +"," + height_clocks / 2 + ")"; })
+                .attr("transform", "translate("+ ( width_clocks/2) +"," + width_clocks / 2 + ")" )
                 .attr("class", "field");
 
         field_rep.append("path")
@@ -303,18 +176,21 @@
 
 
         function arcTween(b) {
-            var i = d3.interpolate({value: b.previous}, b);
+            var i = d3.interpolate({value: b.previous_seg}, b);
             return function(t) {
                 return arc(i(t));
             };
         }
 
         var fields_alt = [
-            {value: 60, size: 60, label: "m", update: function(date) {tmp_min = Math.floor((date-start_alt)/(60*1000));
-                return tmp_min; }},
-            {value: 60, size: 60, label: "s", update: function(date) {
-                tmp_seg = Math.round((date-start_alt)/1000);
-                return tmp_seg-(tmp_min*60);}} // insert start_alt here
+            {value_min: 60, value_seg:60, size: 60, label_min: "m", label_seg:"s",
+                update_min: function(date) {
+                    tmp_min = Math.floor((date-start_alt)/(60*1000));
+                    return tmp_min; },
+                update_seg: function(date) {
+                    tmp_seg = Math.round((date-start_alt)/1000);
+                    return tmp_seg-(tmp_min*60);}
+            } // insert start_alt here
         ];
 
         var svg_alt = d3.select("#columns").append("svg")
@@ -325,8 +201,7 @@
         var field_alt = svg_alt.selectAll(".field")
                 .data(fields_alt)
                 .enter().append("g")
-                .attr("transform", function(d, i) {
-                    return "translate("+ (i*height_clocks + height_clocks/2) +"," + height_clocks / 2 + ")"; })
+                .attr("transform", "translate("+ ( width_clocks/2) +"," + width_clocks / 2 + ")" )
                 .attr("class", "field");
 
         field_alt.append("path")
@@ -340,57 +215,436 @@
                 .attr("class", "label")
                 .attr("dy", ".35em");
 
+        // ################################## STAGE 1.2 INPUTS FOR EXPERIMENTATION ##################################
+        var start_rep = 0;
+        var end_rep = 0;
+        var start_alt = 0;
+        var end_alt = 0;
 
+        // shift focus to next field
+        $(".input_exp.rep").keyup(function () {
+            if (this.value.length == this.maxLength) {
+                $(this).next('.input_exp.rep').focus();
+            }
+        });
+
+        var alt_list = ['#first_letter_alt', '#first_number_alt','#second_letter_alt', '#second_number_alt',
+            '#third_letter_alt','#third_number_alt','#fourth_letter_alt', '#fourth_number_alt',
+            '#fifth_letter_alt', '#fifth_number_alt', '#sixth_letter_alt', '#sixth_number_alt',
+            '#seventh_letter_alt', '#seventh_number_alt', '#eigth_letter_alt','#eigth_number_alt', '#nineth_letter_alt',
+            '#nineth_number_alt'];
+
+        $(".input_exp.alt").keyup(function () {
+            if (this.value.length == this.maxLength) {
+                var iter = alt_list.indexOf('#'+this.id);
+                $(alt_list[iter+1]).focus();
+            }
+        });
+
+        // whenever the user starts typing we start the clock
+        $("#first_letter_repeat").change(function(){
+            start_rep = new Date();
+            (function update_timer() {
+                var now = new Date();
+                if (end_rep===0) {
+                    field_rep
+                            .each(function (d) {
+                                d.previous_min = d.value_min, d.value_min = d.update_min(now);
+                                d.previous_seg = d.value_seg, d.value_seg = d.update_seg(now);
+                            });
+
+                    path_rep.transition()
+                            .ease("elastic")
+                            .duration(750)
+                            .attrTween("d", arcTween);
+
+                    label_rep
+                            .text(function(d) {
+                                if(d.value_min<1){
+                                    return d.value_seg + d.label_seg;
+                                }
+                                else{
+                                    return d.value_min + d.label_min + d.value_seg + d.label_seg;
+                                }
+                            });
+
+                    setTimeout(update_timer, 1000 - (now % 1000));
+                }
+            })()
+        });
+
+        $("#finish_rep").click(function() {
+            end_rep = new Date();
+            svg_rep.append("text")
+                    .text('You Finished!')
+                    .classed("label", true)
+                    .attr("transform", "translate("+ ( width_clocks/2) +"," + (height_clocks-5) + ")" );
+        });
+
+        // whenever the user starts typing we start the second clock
+        $('#first_letter_alt').change(function(){
+            start_alt = new Date();
+            (function update_timer() {
+                var now = new Date();
+                if (end_alt===0) {
+                    field_alt
+                            .each(function (d) {
+                                d.previous_min = d.value_min, d.value_min = d.update_min(now);
+                                d.previous_seg = d.value_seg, d.value_seg = d.update_seg(now);
+                            });
+
+                    path_alt.transition()
+                            .ease("elastic")
+                            .duration(750)
+                            .attrTween("d", arcTween);
+
+                    label_alt
+                            .text(function(d) {
+                                if(d.value_min<1){
+                                    return d.value_seg + d.label_seg;
+                                }
+                                else{
+                                    return d.value_min + d.label_min + d.value_seg + d.label_seg;
+                                }
+                            });
+
+                    setTimeout(update_timer, 1000 - (now % 1000));
+                }
+            })()
+        });
+
+        $("#finish_alt").click(function() {
+            end_alt = new Date();
+            svg_alt.append("text")
+                    .text('You Finished!')
+                    .classed("label", true)
+                    .attr("transform", "translate("+ ( width_clocks/2) +"," + (height_clocks-5) + ")" );
+        });
+
+
+
+        // #################################   STAGE 2: CONTROLS AND INTERACTIVITY ###############################
+
+        //HERE WE CREATE THE ORIGINAL ARRAYS BASED ON THE CHECKBOX LABELS AND THE PRESPECIFIED TIME THAT EACH
+        // TASK TAKE AND THEIR FAMILIARITY.
+
+        $.widget("ui.formatSpinner", $.ui.spinner, {
+            options: {
+            },
+            _parse: function (value) {
+                if (typeof value === "string") {
+                    return this.options.values.indexOf(value);
+                }
+                return value;
+            },
+            _format: function (value) {
+                //wrap around
+                if (value < 0) {
+                    value = this.options.values.length-1;
+                }
+                if (value > this.options.values.length-1) {
+                    value = 0;
+                }
+                var format = this.options.values[value];
+                return format;
+            },
+        });
+
+        var complexity_arr = ["Low", "Mid", "High"];
+
+        var formatSpinner = function(elem){
+            elem.val(complexity_arr[elem.val()]);
+        };
+
+        $(function() {
+            $(".spinner.complexity").formatSpinner({
+                values: complexity_arr
+            });
+        });
+
+
+        var familiarity_arr = ["Very Unfamiliar", "Unfamiliar", "Familiar", "Very Familiar"];
+
+        var formatSpinner = function(elem){
+            elem.val(familiarity_arr[elem.val()]);
+        };
+
+        $(function() {
+            $(".spinner.familiarity").formatSpinner({
+                values: familiarity_arr
+            });
+        });
+
+
+        var complexity_levels = {'Low':0, 'Mid':1, 'High':2};
+        var familiarity_levels = {'Very Unfamiliar':1, 'Unfamiliar':2, 'Familiar':3, 'Very Familiar':4};
+
+        var tasks_vars_orig = ["Writing short Email","Creating a simple bar chart",
+            "Cleaning up desktop","Adding up weekly expenses"];
+        var complexity_vars_orig = [1,1,1,1];
+        var familiarity_vars_orig = [2, 2, 2, 2];
+        var time_vars_orig = [8, 8, 8, 8];
+
+        var tasks_vars = tasks_vars_orig;
+        var complexity_vars = complexity_vars_orig;
+        var familiarity_vars = familiarity_vars_orig;
+        var time_vars = time_vars_orig;
+
+
+        $(function() {
+            $(".spinner.complexity").spinner({
+                change: function(event, ui) {
+                    complexity_vars = $(".spinner.complexity").map(function () {
+                        return complexity_levels[this.value];
+                    }).get();
+                    map_dataset();
+                    render(dataset);
+                }
+            });
+        });
+
+
+        $(function() {
+            $(".spinner.familiarity").spinner({
+                    min: "Very Unfamiliar",
+                    max: "Very Familiar",
+                change: function(event, ui) {
+                    familiarity_vars = $(".spinner.familiarity").map(function () {
+                        return familiarity_levels[this.value];
+                    }).get();
+                    map_dataset();
+                    render(dataset);
+                }
+            });
+        });
+
+        //$( ".spinner.familiarity" ).spinner( "disable" );
+
+        $(function() {
+            $(".spinner.time").spinner({
+                change: function(event, ui) {
+                    time_vars = $(".spinner.time").map(function () {
+                        return this.value;
+                    }).get();
+                    map_dataset();
+                    render(dataset);
+                },
+                min: 1,
+                max: 20
+            });
+        });
+
+
+        var orig_tasks_array = [];
+        var color_domain =['Ramp up'];
+
+        var allcheckboxes = document.getElementsByName("checkbox15");
+
+
+        for(var i = 0, len = allcheckboxes.length; i < len; i++) {
+            var label = getLabel(allcheckboxes[i].id);
+            var value = allcheckboxes[i].value;
+            orig_tasks_array.push({task: label, time: time_vars_orig[i],
+                complexity: complexity_vars_orig[i], familiarity: familiarity_vars_orig[i]});
+            color_domain.push(label);
+        }
+
+        // STAGE 2.2: HERE WE CREATE ALL THE FUNCTIONS THAT WE NEED TO USE IN OUR CODE.
+
+        function getLabel(id){
+            return $("#"+id).next("label").html();
+        }
+
+        function append_ramp_up(checkbox_array, n_switches){  // *** need to fix here the bordeline condition with only one
+            // task... there should be no rampup time.
+            // also add penalizer for ramp_up time.
+            var new_result = [];
+            for (var i = 0; i<=n_switches;i++){
+                for (var j = 0; j < checkbox_array.length; j++) {
+                    current_complexity = checkbox_array[j].complexity;
+                    current_familiarity = checkbox_array[j].familiarity;
+                    if ((j == 0) && (i == 0)) {
+                        new_result.push({task: checkbox_array[j].task, time: (checkbox_array[j].time) / (n_switches + 1)});
+                    }
+                    else {
+                        if(j == 0) {
+                            prior_familiarity = checkbox_array[(checkbox_array.length-1)].familiarity;
+                        }
+                        else {
+                            prior_familiarity = checkbox_array[(j-1)].familiarity;
+                        }
+                        new_result.push({
+                            task: "Ramp up",
+                            time:  0.487 + current_complexity*0.365 + 0.118*prior_familiarity - 0.069*current_familiarity
+                            // this an equation that we got from paper of Rubenstein, Meyer and Evans.
+                        });
+                        new_result.push({task: checkbox_array[j].task, time: (checkbox_array[j].time) / (n_switches + 1)});
+                    }// object here with time.
+                }
+            }
+            return new_result;
+        }
+
+        var tasks_order = ["Writing short Email","Creating a simple bar chart",
+            "Cleaning up desktop","Adding up weekly expenses", "Ramp up"];
+
+        function dynamicSort(property) {
+            var sortOrder = 1;
+            if(property[0] === "-") {
+                sortOrder = -1;
+                property = property.substr(1);
+            }
+            return function (a,b) {
+                var indexA = tasks_order.indexOf(a[property]);
+                var indexB = tasks_order.indexOf(b[property]);;
+                var result = (indexA < indexB) ? -1 : (indexA > indexB) ? 1 : 0;
+                return result * sortOrder;
+            }
+        }
+
+        function rename_y(stacked_obj){ // simple function to rename y objects to x.
+            for(i = 0; i < stacked_obj.length; i++){
+                stacked_obj[i].x0 = stacked_obj[i]['y0'];
+                stacked_obj[i].x = stacked_obj[i]['y'];
+                delete stacked_obj[i].y0;
+                delete stacked_obj[i].y;
+            }
+            return stacked_obj;
+        }
+
+        function get_tasks_array(arr){
+            var flags = [], output = [];
+            var obj = {};
+            for( i=0; i<arr.length; i++) {
+                var task_aux = arr[i].task;
+                if( flags[task_aux]) continue;
+                flags[task_aux] = true;
+                obj[task_aux] =0;
+            }
+            return obj;
+        }
+
+        function copy_arr(orig_arr){
+            var new_arr = [];
+            for(var i = 0; i < orig_arr.length; i++){
+                new_arr.push(orig_arr[i]);
+            }
+            return new_arr;
+        }
+
+        /// YOU NEED TO MODIFY THIS SO THAT EVERY TIME YOU SEE A TASK THAT YOU FOUND BEFORE, YOU CAN RETRIEVE THE INDEX
+        // OF THE LOCATION WHERE YOU FOUND IT. HERE MAYBE USE AN OBJECT INSTEAD OF SIMPLE ARRAY.
+        function bind_arrays(unsorted_arr, sorted_arr) {
+            iters_found = get_tasks_array(unsorted_arr);
+            // up to here working fine.
+            var unsorted_arr_aux = copy_arr(unsorted_arr);
+            var sorted_arr_aux = copy_arr(sorted_arr);
+            for(j=0; j<unsorted_arr_aux.length;j++){
+                for(i = iters_found[unsorted_arr_aux[j].task]; i < sorted_arr_aux.length; i++){
+                    if ((unsorted_arr_aux[j].task === sorted_arr_aux[i].task)){
+                        iters_found[unsorted_arr_aux[j].task] = i+1; // this is not right, because i keeps moving.
+                        unsorted_arr_aux[j].sorted_x0 = sorted_arr_aux[i].x0;
+                        unsorted_arr_aux[j].sorted_x = sorted_arr_aux[i].x;
+                        break;
+                    }
+                }
+
+            }
+            return unsorted_arr_aux;
+        }
+
+        function map_dataset(){
+            dataset = $("input:checkbox:checked").map(function(){
+                iter = tasks_vars.indexOf(getLabel(this.id));
+                return {task: getLabel(this.id), time: time_vars[iter],
+                    complexity: complexity_vars[iter], familiarity: familiarity_vars[iter]};
+            }).get();
+            return dataset;
+        };
+
+        $(".checkboxes").change(function(event){
+            map_dataset();
+            render(dataset);
+        });
+
+
+        // this part right here not working.
+        $('input[name="value"]').change(function(event){
+            map_dataset();
+            render(dataset);
+        });
+
+        var slider_val = $('input[name="myslider"]').val();
+
+        $('input[name="myslider"]').change(function(){
+            slider_val = $('input[name="myslider"]').val();
+            document.getElementById('textInput').value = slider_val;
+            render(dataset); // I get an error here. because dataset doesn
+        });
+
+
+// #########################      STAGE 3: D3             ######################################################//
         // D3 bars
-        var margin = {top: 10, right: 70, bottom: 10, left: 50};
-        var width = 800;
-        var height = 110;
-        var bar_spacing = 20;
-        var sim_y_position = margin.top + (height+bar_spacing)/2;
-        var bar_height = (height-bar_spacing)/2;
+        var margin = {top: 35, right: 50, bottom: 10, left: 70};
+        var width = 930;
+        var height = 200;
+        var bar_spacing = 0.08*(height-margin.top-margin.bottom);
+        var bar_height = (height-margin.top-margin.bottom -bar_spacing)/2;
+        var sim_y_position = margin.top+bar_height +bar_spacing;
 
         var svg = d3.select("#Chart").append("svg")
                 .classed("svg-area", true)
-                .attr("width", width + margin.left + margin.right)
-                .attr("height", height + margin.top + margin.bottom);
+                .attr("width", width)
+                .attr("height", height);
 
         var g_base = svg.append("g")
-              .classed("plot", true)
+              .classed("base_plot", true)
               .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
         var g_sim = svg.append("g")
-                .classed("plot", true)
+                .classed("sim_plot", true)
                 .attr("transform", "translate(" + margin.left + "," + sim_y_position + ")");
 
-        var xAxisG = d3.select(".plot").append("g")
-            .attr("class", "x-axis")
-            .attr("transform", "translate(0," + margin.top + ")"); // fix this, is not showing
+        var xAxisG = svg.append("g")
+            .attr("class", "axis")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        var yAxisG = svg.append("g")
+                .attr("class", "axis y")
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        xAxisG.append("text")
+                .attr("transform", "translate(" + ((width-margin.right-margin.left) / 2) + " ," + (8-margin.top) + ")")
+                .style("text-anchor", "middle")
+                .text("Time (min)");
 
         //here we are just adding all the values to compute the time total. That way we can scale appropriately.
-        var timeTotal = 0;  // Variable to hold your total
+        var maxTime = 35;  // Variable to hold your total
 
-        for(var i = 0, len = allcheckboxes.length; i < len; i++) {
-            var iter = allcheckboxes[i].value;
-            timeTotal += Number(iter.split("-")[0]);  // Iterate over your first array and then grab the second element add the values up
-        }
 
         var xScale = d3.scale
                 .linear()
-                .domain([0, timeTotal*4])
-                .range([0, width]);
+                .domain([0, maxTime*4])
+                .range([0, width-margin.left - margin.right]);
 
         var yScale = d3.scale.ordinal()
-                    .rangeBands([0, height]);
+                .domain(["Baseline", "Simulation"])
+                .rangeBands([0, height-margin.top - margin.bottom]);
 
         var color = d3.scale.ordinal()
                 .domain(color_domain)
                 .range(["#000000", "#1f77b4","#ff7f0e","#2ca02c", "#d62728", "#9467bd",
-                    "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"]) // custom scale to include black for rampup;
+                    "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"]); // custom scale to include black for rampup;
 
         var xAxis = d3.svg
                     .axis()
                         .scale(xScale)
                         .orient("top");
+
+        var yAxis = d3.svg
+                .axis()
+                .scale(yScale)
+                .orient("left");
 
         var tooltip = d3.select("body")
                 .append("div")
@@ -399,12 +653,21 @@
                 .style("z-index", "10")
                 .style("visibility", "hidden");
 
-        // 1 here insert another parameter to be able to use it within the function.
+        xAxisG.call(xAxis);
+        yAxisG.call(yAxis);
+
+        /*var sort_btn = select(".controls")
+                .append("button")
+                .html()*/
+
         function render(data){
+
 
             xAxisG.call(xAxis);
 
-            var stack = d3.layout.stack()// this is just a function so we can reuse it for the simulation plot.
+            yAxisG.call(yAxis);
+
+            var stack = d3.layout.stack()// this is just a function that can be reused for the simulation plot.
             .y(function (d){
                 return d.time;
             })
@@ -414,24 +677,38 @@
 
             // Baseline bar
 
-            var data_baseline = append_ramp_up(data, 0, 1); // the second param is zero because we are splitting it
-            // 0 times which is our baseline.
-
-            var stacked_baseline = stack(data_baseline); // gives us a stacked object with y0 and y...
+            var stacked_baseline = stack(append_ramp_up(data, 0));
+            // the second param is zero because we are splitting it 0 times when plotting the baseline bar.
+            // stack gives us a stacked object with y0 and y...
             // But we don't really want a vertical barchart we want it to be horizontal so, lets rename it
 
-            stacked_baseline = rename_y(stacked_baseline);
+            // the second param is zero because we are splitting it
+            // 0 times which is our baseline.
 
-            console.log(stacked_baseline);
+            var data_base_sorted = copy_arr(append_ramp_up(data, 0));
+            var data_base_unsorted = copy_arr(append_ramp_up(data, 0));
 
-            yScale.domain(stacked_baseline.map(function(d){
-                return d.task;
-            }));
+            // now we sort only one of them
+            data_base_sorted.sort(dynamicSort("task"));
+
+            // then we stack them separately
+
+            var stacked_base_sorted = stack(data_base_sorted);
+            var stacked_base_unsorted = stack(data_base_unsorted);
+
+
+            // But this gives us a stacked object with y0 and y... which we don't really want a
+            // vertical barchart we want it to be horizontal so, so we need to rename it.
+
+            rename_y(stacked_base_sorted);
+            rename_y(stacked_base_unsorted);
+
+            var binded__base_data = bind_arrays(data_base_unsorted, data_base_sorted);
 
 
             // join
             var rects_base = g_base.selectAll("rect")
-                  .data(stacked_baseline);
+                  .data(binded__base_data );
 
             //enter phase
             rects_base.enter().append("rect");
@@ -439,7 +716,7 @@
             //update phase
             rects_base.attr("x", function(d){return xScale(d.x0)})
                     .style("fill", function(d){return color(d.task)})
-                    .attr("y", margin.top + 1)
+                    .attr("y", 1)
                     .attr("width", function(d) { return xScale(d.x); })
                     .attr("height", bar_height)
                     .on("mouseover", function(d){
@@ -451,27 +728,34 @@
             //exit phase
             rects_base.exit().remove();
 
-            // now the SIMULTATION plot
-            //var data_baseline = append_ramp_up(data, 1); // the second param is zero because we are splitting it
+            // now the SIMULATION plot
+
+            // the second param is zero because we are splitting it
             // 0 times which is our baseline.
 
-            var data_sim = append_ramp_up(data, slider_val-1, 20); // the second param is zero because we are splitting it
-            // 0 times which is our baseline.
+            var data_sim_sorted = copy_arr(append_ramp_up(data, slider_val-1));
+            var data_sim_unsorted = copy_arr(append_ramp_up(data, slider_val-1));
 
-            var stacked_sim = stack(data_sim); // gives us a stacked object with y0 and y...
-            // But we don't really want a vertical barchart we want it to be horizontal so, lets rename it
+            // now we sort only one of them
+            data_sim_sorted.sort(dynamicSort("task"));
 
-            stacked_sim = rename_y(stacked_sim);
+            // then we stack them separately
 
-            //maybe bind here the stack array with the color and ramp up numbers, should we use the stack too?
+            var stacked_sim_sorted = stack(data_sim_sorted);
+            var stacked_sim_unsorted = stack(data_sim_unsorted);
 
-            yScale.domain(stacked_sim.map(function(d){
-                return d.task;
-            }));
+
+            // But this gives us a stacked object with y0 and y... which we don't really want a
+            // vertical barchart we want it to be horizontal so, so we need to rename it.
+
+            rename_y(stacked_sim_sorted);
+            rename_y(stacked_sim_unsorted);
+
+            var binded_data = bind_arrays(data_sim_unsorted,data_sim_sorted);
 
             // join
             var rects_sim = g_sim.selectAll("rect")
-                    .data(stacked_sim);
+                    .data(binded_data);
 
             //enter phase
             rects_sim.enter().append("rect");
@@ -479,7 +763,7 @@
             //update phase
             rects_sim.attr("x", function(d){return xScale(d.x0)})
                     .style("fill", function(d){return color(d.task)})
-                    .attr("y", bar_spacing/2)
+                    .attr("y", 0)
                     .attr("width", function(d) { return xScale(d.x); })
                     .attr("height", bar_height)
                     .on("mouseover", function(d){
@@ -488,15 +772,49 @@
                     .on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
                     .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
 
+
+
+            d3.select(".radio").selectAll("input").on("change", change);
+
+            var timeout = setTimeout(function() {
+                d3.select("input[value=\"alternated\"]").property("checked", true).each(change);
+            }, 2000);
+
+            function change() {
+                clearTimeout(timeout);
+                if (this.value === "alternated") transitionAlternated();
+                else transitionSorted();
+            }
+
+            function transitionAlternated() {
+                rects_base.transition()
+                        .duration(1000)
+                        .attr("x", function(d){return xScale(d.x0)})
+                        .attr("width", function(d){return xScale(d.x)});
+
+                rects_sim.transition()
+                        .duration(1000)
+                        .attr("x", function(d){return xScale(d.x0)})
+                        .attr("width", function(d){return xScale(d.x)});
+            }
+
+            function transitionSorted() {
+                rects_base.transition()
+                        .duration(1000)
+                        .attr("x", function(d){return xScale(d.sorted_x0)})
+                        .attr("width", function(d){return xScale(d.sorted_x)});
+
+                rects_sim.transition()
+                        .duration(1000)
+                        .attr("x", function(d){return xScale(d.sorted_x0)})
+                        .attr("width", function(d){return xScale(d.sorted_x)});
+            }
+
             //exit phase
             rects_sim.exit().remove();
 
-
         }
 
-        var fruits = ["Banana", "Orange", "Apple", "Mango", "Banana", "Orange", "Apple"];
-        var a = fruits.indexOf("Apple");
-        console.log(a);
 	</script>
 </body>
 <style>
@@ -508,19 +826,21 @@
         display: block;
     }
     .experimentation{
-             display: block;
-             width: 1000px;
-             margin-bottom: 5px;
-         }
+        display: block;
+        width: 1000px;
+        margin-bottom: 5px;
+        }
     #rows{
         display: inline-block;
         width: 500px;
         vertical-align: top;
-        margin-right: 100px;
+        margin-right: 50px;
     }
     #columns{
         display: inline-block;
         width: 500px;
+        vertical-align: top;
+        margin-right: 50px;
     }
     .input_exp{
         width:22px;
@@ -536,17 +856,6 @@
         color: brown;
         font-weight: bold;
     }
-    .alternate{
-        display: inline-block;
-        margin-left: 40px;
-        margin-right: 40px;
-        width: 80px;
-    }
-    .alternate .input_exp{
-        margin-left: 1.5px;
-        margin-right: 1.5px;
-        margin-bottom: 5px;
-    }
     .clocks{
         display: block;
         width: 1000px;
@@ -561,21 +870,39 @@
         font: 24px sans-serif;
         text-anchor: middle;
     }
+    .learn_more{
+        font: 24px sans-serif;
+        text-anchor: middle;
+        display:block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 300px;
+    }
     .svg-area{
         float:left;
         display: inline-block;
     }
-    .x-axis text {
+    .axis text {
         font-size: 11px;
     }
-    .x-axis line,
-    .x-axis path {
+    .axis line,
+    .axis path {
+        fill: none;
+        stroke: grey;
+        shape-rendering: crispEdges;
+    }
+    .axis line,
+    .axis path {
         fill: none;
         stroke: grey;
         shape-rendering: crispEdges;
     }
     #axis-label {
         font-size: 15px;
+    }
+    .axis.y line {
+        fill: none;
+        stroke: none;
     }
     .tooltip {
         position: absolute;
@@ -584,21 +911,34 @@
         font-weight: bold;
     }
     .controls {
-        width: 400px;
+        width: 390px;
         display: inline-block;
         border-style: solid;
     }
-    .checkbox-grid{
-        margin: 5px;
-        padding: 5px;
+    .tasks_table th{
+        font-size: 10px;
     }
-    .checkbox-grid li {
-        list-style-type: none;
+    .checkboxes_labels{
+        font-size: 10px;
+    }
+    .spinner{
+        width:72px;
+    }
+    .spinner.complexity{
+        width:22px;
+    }
+    .spinner.time{
+        width:10px;
+    }
+    .ui-widget{
+        font-size: 10px;
+    }
+    .myslider{
+        font-size: 12px;
     }
     #MTlevelSlider{
-        width:380px;
-        margin-left: 5px;
-        margin-right: 5px;
+        width:70%;
+        margin:0 auto;
         display: block;
     }
 </style>
