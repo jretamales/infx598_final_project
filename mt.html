@@ -24,9 +24,9 @@
             <input type ="text" class="input_exp rep letter" maxlength=1/>
             <input type ="text" class="input_exp rep letter" maxlength=1/>
             <input type ="text" class="input_exp rep letter" maxlength=1/>
-            <input type ="text" class="input_exp rep letter" maxlength=1/>
+            <input type ="text" class="input_exp rep letter" id = "last_letter_repeat" maxlength=1/>
             <h3>Continue typing the numbers from 1 to 9 in the second row</h3>
-            <input type ="text" class="input_exp rep number" maxlength=1 />
+            <input type ="text" class="input_exp rep number" id = "first_number_repeat" maxlength=1 />
             <input type ="text" class="input_exp rep number" maxlength=1 />
             <input type ="text" class="input_exp rep number" maxlength=1 />
             <input type ="text" class="input_exp rep number" maxlength=1 />
@@ -66,6 +66,8 @@
     </div>
     <div class = "clocks">
     </div>
+    <button id = "see_results"  type="button">See Results!</button>
+    <p id="results"></p>
     <a href="#Chart" class = "learn_more" onclick="window.scrollTo(0, 500)">Learn More</a>
     <div class = "explanation">
         <h2>Visualization</h2>
@@ -119,16 +121,16 @@
             font-weight:bold;">
         </div>
         <hr width="95%">
-        <div class = "radio">
+        <div>
             <form>
-                <label><input  type="radio" name="mode" value="alternated" checked>Alternate Display</label>
-                <label><input  type="radio" name="mode" value="sorted" >Sorted Display</label>
+                <label><input class = "radios" type="radio" name="mode" value="alternated" checked>Alternate Display</label>
+                <label><input class = "radios" type="radio" name="mode" value="sorted" >Sorted Display</label>
             </form>
         </div>
     </div>
-    <script src="00_js_libs/d3.v3.js"></script>
-    <script type="text/javascript" src="00_js_libs/jquery-1.10.2.js"></script>
-	<script type="text/javascript" src="00_js_libs/jquery-ui.js"></script>
+    <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
 	<script>
         // #################################### STAGE 1 TIMERS ###########################################
         // ############################## STAGE 1.1 D3 VISUALIZATION OF TIMERS.
@@ -221,12 +223,20 @@
         var start_alt = 0;
         var end_alt = 0;
 
+
         // shift focus to next field
         $(".input_exp.rep").keyup(function () {
             if (this.value.length == this.maxLength) {
                 $(this).next('.input_exp.rep').focus();
             }
         });
+
+        $("#last_letter_repeat").keyup(function () {
+            if (this.value.length == this.maxLength) {
+                $('#first_number_repeat').focus();
+            }
+        });
+
 
         var alt_list = ['#first_letter_alt', '#first_number_alt','#second_letter_alt', '#second_number_alt',
             '#third_letter_alt','#third_number_alt','#fourth_letter_alt', '#fourth_number_alt',
@@ -241,9 +251,15 @@
             }
         });
 
+        $(".input_exp").on('click', function() {
+            this.value = '';
+        });
+
         // whenever the user starts typing we start the clock
         $("#first_letter_repeat").change(function(){
+            if (start_rep ==0){
             start_rep = new Date();
+            }
             (function update_timer() {
                 var now = new Date();
                 if (end_rep===0) {
@@ -273,17 +289,30 @@
             })()
         });
 
+        var goal_arr = "visualize123456789".split("");
+
+        var rep_arr_values;
+        var rep_errors;
+
         $("#finish_rep").click(function() {
             end_rep = new Date();
             svg_rep.append("text")
                     .text('You Finished!')
                     .classed("label", true)
                     .attr("transform", "translate("+ ( width_clocks/2) +"," + (height_clocks-5) + ")" );
+
+            rep_arr_values = $(".input_exp.rep")
+                    .map(function(){return $(this).val();}).get();
+
+            rep_errors = check_string_errors(rep_arr_values, goal_arr)
         });
+
 
         // whenever the user starts typing we start the second clock
         $('#first_letter_alt').change(function(){
-            start_alt = new Date();
+            if (start_alt ==0) {
+                start_alt = new Date();
+            }
             (function update_timer() {
                 var now = new Date();
                 if (end_alt===0) {
@@ -313,13 +342,37 @@
             })()
         });
 
+        var alt_arr_values;
+        var alt_errors;
         $("#finish_alt").click(function() {
             end_alt = new Date();
             svg_alt.append("text")
                     .text('You Finished!')
                     .classed("label", true)
                     .attr("transform", "translate("+ ( width_clocks/2) +"," + (height_clocks-5) + ")" );
+
+            alt_arr_values = $(".input_exp.alt")
+                    .map(function(){return $(this).val();}).get();
+
+            alt_errors = check_string_errors(alt_arr_values, goal_arr);
+
         });
+
+        function check_string_errors(input_arr, goal_arr){
+            var errors = 0;
+            for(i=0; i<input_arr.length; i++){
+                if (input_arr[i] != goal_arr[i]){
+                    errors = errors + 1;
+                }
+            }
+            return errors
+        }
+
+        $("#see_results").click(function() {
+            $("#results").html("You had " + rep_errors + " errrorsin the repetitive tasks and " + alt_errors +
+                    "errors in the alternate tasks.");
+        })// add here how much time it took.
+
 
 
 
@@ -714,7 +767,9 @@
             rects_base.enter().append("rect");
 
             //update phase
-            rects_base.attr("x", function(d){return xScale(d.x0)})
+
+            if($('input[value=\"alternated\"]').is(':checked')){
+                rects_base.attr("x", function(d){return xScale(d.x0)})
                     .style("fill", function(d){return color(d.task)})
                     .attr("y", 1)
                     .attr("width", function(d) { return xScale(d.x); })
@@ -724,6 +779,19 @@
                         tooltip.style("visibility", "visible");})
                     .on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
                     .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
+            }
+            else if ($('input[value=\"sorted\"]').is(':checked')){
+                rects_base.attr("x", function(d){return xScale(d.sorted_x0)})
+                        .style("fill", function(d){return color(d.task)})
+                        .attr("y", 1)
+                        .attr("width", function(d) { return xScale(d.sorted_x); })
+                        .attr("height", bar_height)
+                        .on("mouseover", function(d){
+                            tooltip.text(d.task);
+                            tooltip.style("visibility", "visible");})
+                        .on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
+                        .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
+            }
 
             //exit phase
             rects_base.exit().remove();
@@ -761,20 +829,58 @@
             rects_sim.enter().append("rect");
 
             //update phase
-            rects_sim.attr("x", function(d){return xScale(d.x0)})
-                    .style("fill", function(d){return color(d.task)})
-                    .attr("y", 0)
-                    .attr("width", function(d) { return xScale(d.x); })
-                    .attr("height", bar_height)
-                    .on("mouseover", function(d){
-                        tooltip.text(d.task);
-                        tooltip.style("visibility", "visible");})
-                    .on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
-                    .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
+            if($('input[value=\"alternated\"]').is(':checked')) {
+                rects_sim.attr("x", function (d) {
+                    return xScale(d.x0)
+                })
+                        .style("fill", function (d) {
+                            return color(d.task)
+                        })
+                        .attr("y", 0)
+                        .attr("width", function (d) {
+                            return xScale(d.x);
+                        })
+                        .attr("height", bar_height)
+                        .on("mouseover", function (d) {
+                            tooltip.text(d.task);
+                            tooltip.style("visibility", "visible");
+                        })
+                        .on("mousemove", function () {
+                            return tooltip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px");
+                        })
+                        .on("mouseout", function () {
+                            return tooltip.style("visibility", "hidden");
+                        });
+            }
 
+            else if ($('input[value=\"sorted\"]').is(':checked')){
+                rects_sim.attr("x", function (d) {
+                    return xScale(d.sorted_x0)
+                })
+                        .style("fill", function (d) {
+                            return color(d.task)
+                        })
+                        .attr("y", 0)
+                        .attr("width", function (d) {
+                            return xScale(d.sorted_x);
+                        })
+                        .attr("height", bar_height)
+                        .on("mouseover", function (d) {
+                            tooltip.text(d.task);
+                            tooltip.style("visibility", "visible");
+                        })
+                        .on("mousemove", function () {
+                            return tooltip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px");
+                        })
+                        .on("mouseout", function () {
+                            return tooltip.style("visibility", "hidden");
+                        });
+            }
 
+            //exit phase
+            rects_sim.exit().remove();
 
-            d3.select(".radio").selectAll("input").on("change", change);
+            d3.selectAll(".radios").on("change", change);
 
             var timeout = setTimeout(function() {
                 d3.select("input[value=\"alternated\"]").property("checked", true).each(change);
@@ -809,9 +915,6 @@
                         .attr("x", function(d){return xScale(d.sorted_x0)})
                         .attr("width", function(d){return xScale(d.sorted_x)});
             }
-
-            //exit phase
-            rects_sim.exit().remove();
 
         }
 
